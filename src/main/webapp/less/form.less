@@ -1,0 +1,106 @@
+/*
+Copyright © 2018 Dennis Schulmeister-Zimolong
+
+E-Mail: dhbw@windows3.de
+Webseite: https://www.wpvs.de/
+
+Dieser Quellcode ist lizenziert unter einer
+Creative Commons Namensnennung 4.0 International Lizenz.
+*/
+
+/*
+ * Vertikal gestapelte Formulare
+ */
+form.stacked {
+    // Jede Spalte max. 30em breit
+    .column {
+        max-width: 30em;
+    }
+
+    // Formularelemente maximal breit gestapelt
+    > *,
+    .column > *,
+    .side-by-side > * {
+        display: block;
+        box-sizing: border-box;
+        width: 100%;
+    }
+
+    // Container für nebeneinander liegende Elemente
+    .side-by-side {
+        display: flex;
+    }
+
+    .side-by-side > * {
+        margin-right: 0.25em;
+    }
+
+    .side-by-side > *:last-child {
+        margin-right: 0;
+    }
+
+    // Feldbezeichner
+    label {
+        margin-top: 1em;
+    }
+
+    label:first-child {
+        margin-top: 0;
+    }
+}
+
+/*
+ * Horizontal ausgerichtete Formulare
+ */
+form.horizontal {
+    // Formularelement maximal hoch, nebeneinander
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    
+    > * {
+        vertical-align: baseline;
+    }
+    
+    // Feldbezeichner
+    label {
+        margin-left: 1em;
+    }
+    
+    label:first-child {
+        margin-left: 0;
+    }
+}
+
+/*
+ * Allgemeingültige Layoutoptionen
+ */
+form label {
+    font-weight: bold;
+}
+
+form label .required {
+    color: darkred;
+}
+
+input,
+textarea,
+select {
+    border: 1px solid #bebebe;
+    padding: 0.5em;
+    margin: 0;
+    outline: none;
+    background: white;
+}
+
+textarea {
+    height: 12em;
+}
+
+/*
+ * Fehlermeldungen
+ */
+form .errors {
+    margin-top: 1em;
+    color: red;
+}

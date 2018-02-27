@@ -1,0 +1,45 @@
+=======================
+Hinweise zum Deployment
+=======================
+
+Diese Webanwendung nutzt die JavaEE-Funktionen für den Login eines Benutzers,
+um zu zeigen, wie eine echte Webanwendung abgesichert werden kann. Leider
+erfordert dies aber ein paar Vorarbeiten, bevor die Anwendung genutzt werden
+kann. Denn es muss erst eine Authentifizierungsmethode in der Glassfish-
+Konfiguration definiert werden.
+
+Gehe hierfür wie folgt vor:
+
+  Start der Admin-Konsole
+
+    1. Links in Netbeans den Reiter „Services” öffnen
+    2. Rechtsklick auf „Glassfish Server”
+    3. Menüpunkt „View Domain Admin Console” anklicken
+
+  Konfiguration in der Admin-Konsole
+
+    1. Links „Configurations” → „server-config” → „Security” aufklappen
+    2. Menüpunkt „Realms” anklicken
+    3. Oberhalb der Tabelle auf „New” klicken
+    4. Folgende Werte eingeben (exakte Schreibweise beachten!)
+
+         Name:                             todo-app
+         Class Name:                       ….JDBCRealm
+         JAAS Context:                     jdbcRealm
+         JNDI:                             jdbc/__default
+         User Table:                       jtodo.jtodo_user
+         User Name Column:                 username
+         Password Column:                  password_hash
+         Group Table:                      jtodo.jtodo_user_group
+         Group Table User Name Column:     username
+         Group Name Column:                groupname
+         Passwort Encryption Algorithm:    SHA-256
+         Assign Groups:                    todo-app-user
+
+    5. Oben rechts auf "OK" klicken zum Sichern
+
+  Ausprobieren
+
+    1. Webanwendung starten
+    2. Neuen Benutzer registrieren
+    3. Login und Logout mit dem neuen Benutzer
